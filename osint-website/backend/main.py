@@ -20,7 +20,7 @@ from pydantic import BaseModel
 from pathlib import Path
 from typing import Dict, Any
 
-from .rule_engine import load_definitions, RuleEngine
+from rule_engine import load_definitions, RuleEngine
 
 app = FastAPI(title="OSINT Warning Dashboard Backend")
 

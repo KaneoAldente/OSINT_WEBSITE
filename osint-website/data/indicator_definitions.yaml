@@ -1,0 +1,53 @@
+---
+# Example indicator definitions for the OSINT warning dashboard.
+# Each indicator has an ID, the PIR it supports, whether it is associated
+# with the most‑likely or most‑dangerous course of action, a descriptive
+# statement, the data feeds that might produce evidence for the indicator,
+# and a simple threshold definition. These definitions are deliberately
+# minimal; analysts can extend them with more sophisticated logic.
+
+indicators:
+  - id: A1
+    pir: 1
+    coa: mlcoa
+    description: Politburo Standing Committee travel freeze; senior leaders cancel foreign trips and remain in Beijing.
+    data_signals:
+      - diplomatic_travel
+      - flight_tracking
+    threshold:
+      type: occurrence
+      occurrences_required: 1
+      time_window_hours: 72
+  - id: B5
+    pir: 2
+    coa: mdcoa
+    description: Rocket Force TELs leave garrisons at night and disperse across highways.
+    data_signals:
+      - sar_imagery
+      - rf_geolocation
+    threshold:
+      type: occurrence
+      occurrences_required: 2
+      time_window_hours: 24
+  - id: C1
+    pir: 2
+    coa: mlcoa
+    description: Surge of China Coast Guard cutters and white‑hulled maritime militia convoys departing major ports.
+    data_signals:
+      - ais_tracks
+      - sar_imagery
+    threshold:
+      type: rate
+      rate_increase: 200
+      baseline_period_hours: 168
+  - id: E3
+    pir: 3
+    coa: common
+    description: Commercial SAR detects DF‑17/DF‑26 TEL convoys on highways after dusk; garrisons show empty garages.
+    data_signals:
+      - sar_imagery
+      - road_traffic
+    threshold:
+      type: occurrence
+      occurrences_required: 3
+      time_window_hours: 12
